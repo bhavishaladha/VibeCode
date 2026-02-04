@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vibe Coding: Design Spotlight</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .mono { font-family: 'JetBrains Mono', monospace; }
+        .gradient-text {
+            background: linear-gradient(to right, #4f46e5, #9333ea, #db2777);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .slide-section {
+            padding: 5rem 1.5rem;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        .slide-number {
+            font-family: 'JetBrains Mono', monospace;
+            color: #cbd5e1;
+            font-size: 0.875rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+        /* Creative Project Tile Styles */
+        .project-card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 1rem;
+            isolation: isolate;
+            height: 100%;
+        }
+        .project-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.8) 100%);
+            z-index: 1;
+            opacity: 0.6;
+            transition: opacity 0.3s;
+        }
+        .project-card:hover::before {
+            opacity: 0.8;
+        }
+        .project-img {
+            width: 100%;
+            height: 100%;
+            min-height: 320px;
+            object-fit: cover;
+            transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .project-card:hover .project-img {
+            transform: scale(1.1);
+        }
+        .project-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 1.5rem;
+            z-index: 2;
+            color: white;
+            transform: translateY(10px);
+            transition: transform 0.3s;
+        }
+        .project-card:hover .project-content {
+            transform: translateY(0);
+        }
+        /* Landing Page Aesthetics */
+        .hero-bg {
+            background-color: #f8fafc;
+            background-image: 
+                radial-gradient(at 0% 0%, hsla(253,16%,90%,1) 0, transparent 50%), 
+                radial-gradient(at 50% 0%, hsla(225,39%,90%,1) 0, transparent 50%), 
+                radial-gradient(at 100% 0%, hsla(339,49%,90%,1) 0, transparent 50%);
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            position: relative;
+        }
+        .hero-mesh {
+            position: absolute;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%230f172a' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+        /* Surprise Section Animation */
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(245, 158, 11, 0.2); }
+            50% { box-shadow: 0 0 40px rgba(245, 158, 11, 0.5); }
+        }
+        .surprise-box {
+            animation: pulse-glow 3s infinite;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900 min-h-screen">
+
+    <!-- Nav -->
+    <nav class="w-full px-8 py-6 flex justify-between items-center bg-white/80 backdrop-blur-md sticky top-0 z-50 border-b border-slate-200 text-slate-900">
+        <div class="text-xl font-bold tracking-tighter">VIBE<span class="text-indigo-600">CODING</span></div>
+        <div class="flex gap-4 text-sm font-medium opacity-80">
+            <span>Bhavisha Ladha</span>
+            <span class="text-slate-300">|</span>
+            <span>Design Spotlight</span>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <header class="hero-bg min-h-[90vh] flex items-center justify-center relative overflow-hidden text-slate-900">
+        <div class="hero-mesh"></div>
+        <div class="max-w-5xl mx-auto px-6 py-24 text-center relative z-10">
+            <div class="inline-flex items-center gap-2 px-4 py-2 mb-8 rounded-full bg-indigo-50 border border-indigo-100 text-indigo-700 text-sm font-semibold backdrop-blur-sm shadow-sm">
+                <span class="relative flex h-2 w-2">
+                  <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75"></span>
+                  <span class="relative inline-flex rounded-full h-2 w-2 bg-indigo-600"></span>
+                </span>
+                Design Spotlight
+            </div>
+            <h1 class="text-6xl md:text-8xl font-extrabold tracking-tight mb-8 leading-tight text-slate-900">
+                Design Intuition <br>
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600">Meets Code.</span>
+            </h1>
+            <p class="text-xl md:text-2xl text-slate-600 max-w-3xl mx-auto leading-relaxed font-normal mb-12">
+                We aren't learning syntax today. We are looking at how to translate creative intent into working tools using Google AI Studio.
+            </p>
+            <div class="flex justify-center gap-4">
+                <button class="bg-indigo-600 text-white px-8 py-3 rounded-full font-bold hover:bg-indigo-700 transition-colors shadow-lg shadow-indigo-200">
+                    Explore Projects
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- SLIDE 1: The Concept -->
+    <section class="slide-section bg-white">
+        <div class="max-w-6xl mx-auto">
+            <span class="slide-number">01 // THE CONCEPT</span>
+            <h2 class="text-3xl font-bold mb-12">What exactly is "Vibe Coding"?</h2>
+            
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <p class="text-lg text-slate-600 mb-6 leading-relaxed">
+                        Think of it as <strong>Creative Direction for software</strong>.
+                    </p>
+                    <p class="text-slate-600 mb-6 leading-relaxed">
+                        In traditional coding, you are the construction worker laying every brick. 
+                        In Vibe Coding, you are the <strong>Architect</strong>. You describe the vision, the purpose, and the "vibe," and the AI handles the heavy lifting.
+                    </p>
+                    <div class="bg-indigo-50 p-6 rounded-xl border border-indigo-100 mt-6">
+                        <h4 class="font-bold text-indigo-900 mb-2 flex items-center gap-2">
+                            <i data-lucide="lightbulb" class="w-5 h-5"></i>
+                            The Core Rule
+                        </h4>
+                        <p class="text-indigo-800 text-sm">
+                            "If you can describe it clearly in English, you can code it."
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Visual Comparison -->
+                <div class="bg-slate-900 rounded-xl p-6 shadow-2xl text-sm font-mono text-slate-300">
+                    <div class="grid grid-cols-2 gap-4 border-b border-slate-700 pb-4 mb-4">
+                        <div class="text-center text-slate-500 text-xs uppercase tracking-widest">The Old Way</div>
+                        <div class="text-center text-indigo-400 text-xs uppercase tracking-widest font-bold">The Vibe Way</div>
+                    </div>
+                    <div class="space-y-6">
+                        <div class="grid grid-cols-2 gap-4 items-start">
+                            <div class="opacity-50 text-[10px] leading-tight">
+                                div {<br>
+                                &nbsp;&nbsp;display: flex;<br>
+                                &nbsp;&nbsp;justify-content: center;<br>
+                                &nbsp;&nbsp;background: #000;<br>
+                                }
+                            </div>
+                            <div class="text-white bg-slate-800 p-2 rounded text-xs border border-indigo-500/30">
+                                "Make a centered black box."
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-2 gap-4 items-start">
+                            <div class="opacity-50 text-[10px] leading-tight">
+                                const data = fetch('/api')<br>
+                                .then(res => res.json())<br>
+                                .catch(err => console.log(err));
+                            </div>
+                            <div class="text-white bg-slate-800 p-2 rounded text-xs border border-indigo-500/30">
+                                "Fetch data from the API and handle errors."
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SLIDE 2: Projects Showcase (UPDATED IMAGES) -->
+    <section class="slide-section bg-slate-50">
+        <div class="max-w-7xl mx-auto">
+            <span class="slide-number">02 // WHAT I'VE BUILT</span>
+            <h2 class="text-3xl font-bold mb-12">Vibe Coding in Action</h2>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                 <!-- Project 1: Kaleidoscope (Moved) -->
+                 <div class="project-card shadow-xl group cursor-pointer bg-white">
+                    <img src="https://images.unsplash.com/photo-1567095761054-7a02e69e5c43?auto=format&fit=crop&w=800&q=80" alt="Kaleidoscope" class="project-img">
+                    <div class="project-content">
+                        <div class="bg-purple-500/20 backdrop-blur-sm inline-block px-3 py-1 rounded-full text-xs font-bold mb-2 border border-white/20">Generative Art</div>
+                        <h3 class="font-bold text-xl mb-1">Kaleidoscope</h3>
+                        <p class="text-xs text-slate-100 opacity-90">Moving patterns from inputs.</p>
+                    </div>
+                </div>
+                
+                <!-- Project 2: Design Quiz -->
+                <div class="project-card shadow-xl group cursor-pointer bg-white">
+                    <!-- Updated Image: Pantone Color Swatches for a more "Design" feel -->
+                    <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Design Quiz" class="project-img">
+                    <div class="project-content">
+                        <div class="bg-indigo-500/20 backdrop-blur-sm inline-block px-3 py-1 rounded-full text-xs font-bold mb-2 border border-white/20">Interactive</div>
+                        <h3 class="font-bold text-xl mb-1">Design Quiz</h3>
+                        <p class="text-xs text-slate-100 opacity-90">Test your design knowledge.</p>
+                    </div>
+                </div>
+
+                <!-- Project 3: Icon Maker -->
+                <div class="project-card shadow-xl group cursor-pointer bg-white">
+                    <img src="https://images.unsplash.com/photo-1563089145-599997674d42?auto=format&fit=crop&w=800&q=80" alt="Icon Maker" class="project-img">
+                    <div class="project-content">
+                        <div class="bg-pink-500/20 backdrop-blur-sm inline-block px-3 py-1 rounded-full text-xs font-bold mb-2 border border-white/20">AI Tool</div>
+                        <h3 class="font-bold text-xl mb-1">Style Matcher</h3>
+                        <p class="text-xs text-slate-100 opacity-90">Style-aware asset generator.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SLIDE 3: The Goal -->
+    <section class="slide-section bg-white">
+        <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+            <div>
+                <span class="slide-number">03 // THE FOCUS</span>
+                <h2 class="text-3xl font-bold mb-6">Deep Dive: AI Icon Generator</h2>
+                <p class="text-lg text-slate-600 mb-6">
+                    Let's break down how the <strong>Icon Generator</strong> was built.
+                </p>
+                <ul class="space-y-4 text-slate-600">
+                    <li class="flex items-start gap-3">
+                        <i data-lucide="check" class="text-indigo-500 mt-1"></i>
+                        <span><strong>Input:</strong> You upload a reference image (e.g., a specific line-art style).</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <i data-lucide="check" class="text-indigo-500 mt-1"></i>
+                        <span><strong>Processing:</strong> The AI analyzes stroke width, color, and shapes.</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <i data-lucide="check" class="text-indigo-500 mt-1"></i>
+                        <span><strong>Output:</strong> It generates code to create NEW icons in that exact style.</span>
+                    </li>
+                </ul>
+            </div>
+            <div class="bg-slate-100 rounded-xl p-8 border border-slate-200 shadow-sm">
+                <!-- Mockup of the tool -->
+                <div class="bg-white rounded shadow-sm border border-slate-200 p-4">
+                    <div class="flex items-center justify-between mb-4 border-b border-slate-100 pb-2">
+                        <span class="font-bold text-sm text-slate-700">IconGen Tool</span>
+                        <div class="flex gap-1"><div class="w-2 h-2 rounded-full bg-slate-300"></div></div>
+                    </div>
+                    <div class="flex gap-4">
+                        <div class="w-1/3 bg-slate-50 border border-dashed border-slate-300 rounded flex flex-col items-center justify-center p-4 text-center">
+                            <i data-lucide="image" class="text-slate-300 mb-2"></i>
+                            <span class="text-[10px] text-slate-400">Ref Image</span>
+                        </div>
+                        <div class="w-2/3 space-y-2">
+                            <div class="h-2 bg-slate-100 rounded w-3/4"></div>
+                            <div class="h-2 bg-slate-100 rounded w-1/2"></div>
+                            <div class="bg-indigo-600 text-white text-xs py-1.5 px-3 rounded inline-block mt-2 shadow-sm">Generate "Coffee Cup"</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SLIDE 4: The Tools -->
+    <section class="slide-section bg-slate-50">
+        <div class="max-w-6xl mx-auto">
+            <span class="slide-number">04 // THE TOOLS</span>
+            <h2 class="text-3xl font-bold mb-12">Our Workbench: Google AI Studio</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white p-6 rounded-xl border border-slate-200 hover:border-indigo-100 transition-colors">
+                    <i data-lucide="zap" class="text-purple-600 mb-4 h-8 w-8"></i>
+                    <h3 class="font-bold text-lg mb-2">(Nano Banana Powered App)</h3>
+                    <p class="text-sm text-slate-500">The secret engine. Fast, playful, and surprisingly smart. We use this to do the heavy lifting.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl border border-slate-200 hover:border-indigo-100 transition-colors">
+                    <i data-lucide="eye" class="text-indigo-600 mb-4 h-8 w-8"></i>
+                    <h3 class="font-bold text-lg mb-2">It Can "See"</h3>
+                    <p class="text-sm text-slate-500">We don't just type. We drag-and-drop images so the AI sees exactly what we see.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl border border-slate-200 hover:border-indigo-100 transition-colors">
+                    <i data-lucide="monitor" class="text-pink-600 mb-4 h-8 w-8"></i>
+                    <h3 class="font-bold text-lg mb-2">No Installing Stuff</h3>
+                    <p class="text-sm text-slate-500">Everything runs in the browser. No complex setup. Just open the page and go.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SLIDE 5: The Workflow -->
+    <section class="slide-section bg-white">
+        <div class="max-w-6xl mx-auto">
+            <span class="slide-number">05 // HOW IT WORKS</span>
+            <h2 class="text-3xl font-bold mb-12">The Vibe Coding Process</h2>
+            
+            <div class="grid md:grid-cols-2 gap-12 mb-16">
+                <!-- Step 1 -->
+                <div class="bg-slate-50 p-8 rounded-2xl shadow-sm border border-slate-200 relative overflow-hidden group">
+                    <div class="absolute top-0 right-0 p-4 opacity-5 font-black text-6xl group-hover:opacity-10 transition-opacity">1</div>
+                    <div class="relative z-10">
+                        <div class="w-10 h-10 bg-indigo-100 rounded-lg flex items-center justify-center mb-4 text-indigo-600 font-bold">01</div>
+                        <h3 class="text-xl font-bold mb-3">Describe & Generate</h3>
+                        <p class="text-slate-600 leading-relaxed mb-4">
+                            Start with a fun, creative idea in the prompt box. Describe the app you want to create (e.g., "A tool that makes blue icons").
+                        </p>
+                        <div class="bg-white p-4 rounded-lg border border-slate-100 text-sm text-indigo-800">
+                            <i data-lucide="zap" class="inline w-4 h-4 mr-1"></i>
+                            Result: The AI writes the code and shows you a preview instantly.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="bg-slate-50 p-8 rounded-2xl shadow-sm border border-slate-200 relative overflow-hidden group">
+                    <div class="absolute top-0 right-0 p-4 opacity-5 font-black text-6xl group-hover:opacity-10 transition-opacity">2</div>
+                    <div class="relative z-10">
+                        <div class="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center mb-4 text-purple-600 font-bold">02</div>
+                        <h3 class="text-xl font-bold mb-3">Refine & Polish</h3>
+                        <p class="text-slate-600 leading-relaxed mb-4">
+                            Now talk to it. Use the chat to refine the look. "Make it darker," "Add a download button," or "Fix the spacing."
+                        </p>
+                        <div class="bg-white p-4 rounded-lg border border-purple-100 text-sm text-purple-800">
+                            <i data-lucide="refresh-cw" class="inline w-4 h-4 mr-1"></i>
+                            Result: The app updates in real-time based on your feedback.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- The Iterative Process Loop -->
+            <div class="border-t border-slate-200 pt-12">
+                <div class="flex items-center justify-center gap-2 mb-8">
+                    <span class="bg-amber-100 text-amber-700 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider">Most Important</span>
+                    <h3 class="text-xl font-bold text-center text-slate-800 uppercase tracking-widest text-sm">The Iterative Process & Feedback Loop</h3>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                    <div class="p-6 bg-slate-50 rounded-lg shadow-sm border border-slate-200">
+                        <div class="text-indigo-600 font-bold mb-2">1. Ask</div>
+                        <p class="text-xs text-slate-500">"Make a red circle."</p>
+                    </div>
+                    <div class="p-6 bg-slate-50 rounded-lg shadow-sm border border-slate-200">
+                        <div class="text-indigo-600 font-bold mb-2">2. See</div>
+                        <p class="text-xs text-slate-500">AI builds it. You look at it.</p>
+                    </div>
+                    <div class="p-6 bg-slate-50 rounded-lg shadow-sm border border-slate-200">
+                        <div class="text-indigo-600 font-bold mb-2">3. Critique</div>
+                        <p class="text-xs text-slate-500">"It's too bright. It looks aggressive."</p>
+                    </div>
+                    <div class="p-6 bg-slate-50 rounded-lg shadow-sm border border-slate-200">
+                        <div class="text-indigo-600 font-bold mb-2">4. Fix</div>
+                        <p class="text-xs text-slate-500">"Make it pastel. Add a border."</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SLIDE 6: CASE STUDY -->
+    <section class="slide-section bg-slate-50">
+        <div class="max-w-6xl mx-auto">
+            <span class="slide-number">06 // REAL WORLD EXAMPLE</span>
+            <h2 class="text-3xl font-bold mb-4">Case Study: How I Built This Tool</h2>
+            <p class="text-slate-600 mb-12 text-lg">
+                I didn't write 500 lines of code. I wrote 3 English sentences. <br>This is the <strong>Iterative Theory</strong> in action: Start Simple > Add Utility > Add Logic.
+            </p>
+
+            <div class="grid gap-8">
+                
+                <!-- Iteration 1 -->
+                <div class="flex flex-col md:flex-row gap-6 p-6 rounded-2xl bg-white border border-indigo-100">
+                    <div class="md:w-1/4">
+                        <div class="bg-indigo-600 text-white text-xs font-bold px-3 py-1 rounded inline-block mb-2">Iteration 1: The Base</div>
+                        <h3 class="font-bold text-slate-900">Minimum Viable Prompt</h3>
+                    </div>
+                    <div class="md:w-3/4">
+                        <div class="font-mono text-sm text-slate-600 bg-slate-50 p-4 rounded-lg border border-indigo-100 shadow-sm">
+                            "Create an icon generator which creates icon in a similar style of the uploaded image."
+                        </div>
+                        <div class="mt-2 text-xs text-slate-500">
+                            <strong>Theory:</strong> Establish the core context first. Don't worry about buttons or settings. Just get the AI to understand "Image In -> Icon Out".
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Iteration 2 -->
+                <div class="flex flex-col md:flex-row gap-6 p-6 rounded-2xl bg-white border border-purple-100">
+                    <div class="md:w-1/4">
+                        <div class="bg-purple-600 text-white text-xs font-bold px-3 py-1 rounded inline-block mb-2">Iteration 2: The Utility</div>
+                        <h3 class="font-bold text-slate-900">Adding Features</h3>
+                    </div>
+                    <div class="md:w-3/4">
+                        <div class="font-mono text-sm text-slate-600 bg-slate-50 p-4 rounded-lg border border-purple-100 shadow-sm">
+                            "Add an option of removing background and downloading as transparent png."
+                        </div>
+                        <div class="mt-2 text-xs text-slate-500">
+                            <strong>Theory:</strong> Once the base works, ask for specific libraries (like background removal). Isolate complexity by adding one feature at a time.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Iteration 3 -->
+                <div class="flex flex-col md:flex-row gap-6 p-6 rounded-2xl bg-white border border-pink-100">
+                    <div class="md:w-1/4">
+                        <div class="bg-pink-600 text-white text-xs font-bold px-3 py-1 rounded inline-block mb-2">Iteration 3: The Logic</div>
+                        <h3 class="font-bold text-slate-900">Adding Complexity</h3>
+                    </div>
+                    <div class="md:w-3/4">
+                        <div class="font-mono text-sm text-slate-600 bg-slate-50 p-4 rounded-lg border border-pink-100 shadow-sm">
+                            "Add option of mutiple version, initally it can be selected as 1, then it can be selected as 2, 4 or 6."
+                        </div>
+                        <div class="mt-2 text-xs text-slate-500">
+                            <strong>Theory:</strong> Logic (loops, grids, if/else statements) is the hardest part for LLMs. Save this for last, after the visuals and basic functions are stable.
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SLIDE 7: Fixing Errors -->
+    <section class="slide-section bg-white">
+        <div class="max-w-6xl mx-auto">
+            <span class="slide-number">07 // FIXING ERRORS</span>
+            <h2 class="text-3xl font-bold mb-6">Fixing things in English</h2>
+            <div class="bg-red-50 border border-red-100 rounded-xl p-8 max-w-3xl">
+                <p class="font-mono text-red-600 text-sm mb-4">Error: 'NoneType' object has no attribute 'group'</p>
+                <div class="flex items-start gap-4">
+                    <i data-lucide="arrow-right-circle" class="text-slate-400 mt-1"></i>
+                    <div>
+                        <h4 class="font-bold text-slate-900">Old Way</h4>
+                        <p class="text-sm text-slate-500">Search StackOverflow. Read confusing docs. Give up.</p>
+                    </div>
+                </div>
+                <div class="flex items-start gap-4 mt-6">
+                    <i data-lucide="arrow-right-circle" class="text-green-500 mt-1"></i>
+                    <div>
+                        <h4 class="font-bold text-slate-900">Vibe Way</h4>
+                        <p class="text-sm text-slate-500">Copy the error. Paste it to the AI. Say: "Fix this."</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SLIDE 8: Deployment & Reality Check -->
+    <section class="slide-section bg-slate-50">
+        <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-16 items-center">
+            
+            <!-- Finishing Up -->
+            <div class="text-left">
+                <span class="slide-number">08 // FINISHING UP</span>
+                <h2 class="text-3xl font-bold mb-6">The "Get Code" Button</h2>
+                <p class="text-slate-600 mb-8 leading-relaxed">
+                    Once the vibe is right, we don't just leave it in the chat. We can grab the code and use it in our projects.
+                </p>
+                <button class="bg-indigo-600 text-white px-8 py-3 rounded-lg font-bold shadow-lg shadow-indigo-200 hover:scale-105 transition-transform flex items-center gap-2">
+                    <i data-lucide="code"></i>
+                    Start The Demo
+                </button>
+            </div>
+
+            <!-- Reality Check (Side-by-side) -->
+            <div class="bg-white border-l-4 border-amber-400 shadow-xl rounded-r-2xl p-8 relative overflow-hidden">
+                <div class="flex items-center gap-3 mb-4">
+                    <div class="bg-amber-100 p-2 rounded-full">
+                        <i data-lucide="alert-triangle" class="text-amber-600 w-5 h-5"></i>
+                    </div>
+                    <h2 class="text-xl font-bold text-slate-900">The Reality Check</h2>
+                </div>
+                
+                <div class="space-y-4">
+                    <div>
+                        <h4 class="font-bold text-slate-900 text-sm mb-1 flex items-center gap-2">
+                            <i data-lucide="x-circle" class="text-red-500 w-4 h-4"></i>
+                            What AI Will Ruin
+                        </h4>
+                        <ul class="text-xs text-slate-600 list-disc list-inside">
+                            <li>Text inside images</li>
+                            <li>Tiny details & Consistency</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-slate-900 text-sm mb-1 flex items-center gap-2">
+                            <i data-lucide="check-circle" class="text-emerald-500 w-4 h-4"></i>
+                            Your Role
+                        </h4>
+                        <ul class="text-xs text-slate-600 list-disc list-inside">
+                            <li>Curator, Fixer, Finisher</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEW SLIDE 9: Surprise Quiz -->
+    <section class="slide-section bg-indigo-900 text-white relative overflow-hidden surprise-box">
+        <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
+        <div class="max-w-4xl mx-auto text-center relative z-10">
+            <span class="inline-block bg-amber-400 text-amber-900 font-bold px-3 py-1 rounded-full text-xs mb-4 uppercase tracking-widest">Surprise Event</span>
+            <h2 class="text-4xl md:text-6xl font-black mb-6">One Last Thing...</h2>
+            <p class="text-indigo-200 text-xl mb-8">
+                Think you know Vibe Coding? Let's test your intuition.
+            </p>
+            <div class="bg-white/10 backdrop-blur-md border border-white/20 p-8 rounded-2xl max-w-lg mx-auto transform hover:scale-105 transition-transform duration-300 cursor-pointer group">
+                <i data-lucide="gamepad-2" class="w-16 h-16 mx-auto mb-4 text-amber-400 group-hover:rotate-12 transition-transform"></i>
+                <h3 class="text-2xl font-bold mb-2">The "Vibe Check" Quiz</h3>
+                <p class="text-indigo-200 text-sm">A quick game to wrap up the session.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="text-center text-slate-500 py-12 bg-slate-50">
+        <p class="font-medium">Built for the Vibe Coding Session</p>
+        <p class="text-sm mt-2 opacity-60">Generated with Gemini</p>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
